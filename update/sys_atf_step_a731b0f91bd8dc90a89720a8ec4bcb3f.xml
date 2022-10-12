@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_step">
+    <sys_atf_step action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <copied_from/>
+        <description>Run Server Side Validation Script</description>
+        <display_name>Run Server Side Script</display_name>
+        <inputs/>
+        <mugshots_cache_json/>
+        <notes/>
+        <order>1</order>
+        <snapshot/>
+        <step_config display_value="Run Server Side Script">41de4a935332120028bc29cac2dc349a</step_config>
+        <sys_class_name>sys_atf_step</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-04-21 07:34:27</sys_created_on>
+        <sys_id>a731b0f91bd8dc90a89720a8ec4bcb3f</sys_id>
+        <sys_mod_count>9</sys_mod_count>
+        <sys_name>Run Server Side Script</sys_name>
+        <sys_package display_value="DevTools WORK IN PROGRESS" source="x_snc_devtools">d689f6901bd38450a89720a8ec4bcbfd</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="DevTools WORK IN PROGRESS">d689f6901bd38450a89720a8ec4bcbfd</sys_scope>
+        <sys_update_name>sys_atf_step_a731b0f91bd8dc90a89720a8ec4bcb3f</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-03-02 20:37:05</sys_updated_on>
+        <table/>
+        <test display_value="DevTools - IsEqual">720130f91bd8dc90a89720a8ec4bcb01</test>
+        <timeout/>
+        <warning_message/>
+    </sys_atf_step>
+    <sys_variable_value action="delete_multiple" query="document_key=a731b0f91bd8dc90a89720a8ec4bcb3f"/>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>a731b0f91bd8dc90a89720a8ec4bcb3f</document_key>
+        <order>200</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-04-21 07:34:27</sys_created_on>
+        <sys_id>97423cf91bd8dc90a89720a8ec4bcb67</sys_id>
+        <sys_mod_count>9</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-03-02 20:37:05</sys_updated_on>
+        <value>var strLog = '';&#13;
+function Log(strText)&#13;
+{&#13;
+	strLog = strLog + "\n" + strText;&#13;
+}&#13;
+(function(outputs, steps, stepResult, assertEqual)&#13;
+{&#13;
+	var bResult = true;&#13;
+	&#13;
+	function TestCase_IsEqual(vInput1, vInput2, bIgnoreOrder, vExpected)&#13;
+	{&#13;
+		Log('TestCase_IsEqual');&#13;
+		Log('Input1: '+RenderValue(vInput1));&#13;
+		Log('Input2: '+RenderValue(vInput2));&#13;
+		Log('bIgnoreOrder: '+RenderValue(bIgnoreOrder));&#13;
+		Log('Expected: '+RenderValue(vExpected));&#13;
+		var vResult = IsEqual(vInput1,vInput2,bIgnoreOrder);&#13;
+		Log('Result  : '+vResult);&#13;
+		if (vResult != vExpected)&#13;
+		{&#13;
+			bResult = false;&#13;
+			Log('Test case FAILED');&#13;
+		}&#13;
+		Log('');&#13;
+	}&#13;
+	&#13;
+	TestCase_IsEqual(null,false,false,false);&#13;
+	&#13;
+	TestCase_IsEqual(true,true,false,true);&#13;
+	TestCase_IsEqual(true,false,false,false);&#13;
+&#13;
+	TestCase_IsEqual(42,42,false,true);&#13;
+	TestCase_IsEqual(43,42,false,false);&#13;
+	&#13;
+	TestCase_IsEqual('','',false,true);&#13;
+	TestCase_IsEqual('Alpha','Alpha',false,true);&#13;
+	TestCase_IsEqual('Alpha','Beta',false,false);&#13;
+&#13;
+	TestCase_IsEqual([],[],false,true);&#13;
+	TestCase_IsEqual(['Alpha'],['Alpha'],false,true);&#13;
+	TestCase_IsEqual(['Alpha'],['Beta'],false,false);&#13;
+	TestCase_IsEqual(['Alpha','Beta'],['Alpha','Beta'],false,true);&#13;
+	TestCase_IsEqual(['Alpha'],['Alpha','Beta'],false,false);&#13;
+	TestCase_IsEqual(['Alpha','Beta'],['Alpha'],false,false);&#13;
+&#13;
+	TestCase_IsEqual(['Alpha','Beta'],['Beta','Alpha'],true,true);&#13;
+&#13;
+	TestCase_IsEqual(1,"1",false,false);&#13;
+	TestCase_IsEqual([1,2],['1','2'],false,false);&#13;
+	&#13;
+	&#13;
+	TestCase_IsEqual({},{},false,true);&#13;
+	TestCase_IsEqual({key1:'Alpha'},{key1:'Alpha'},false,true);&#13;
+	TestCase_IsEqual({key1:'Alpha'},{key1:'Beta'},false,false);&#13;
+	TestCase_IsEqual({key1:'Alpha'},{key1:'Beta'},true,false);&#13;
+	TestCase_IsEqual({key1:'Alpha',key2:'Beta'},{key1:'Alpha', key2:'Beta'},false,true);&#13;
+	TestCase_IsEqual({key1:'Alpha'},{key1:'Alpha',key2:'Beta'},false,false);&#13;
+	TestCase_IsEqual({key1:'Alpha',key2:'Beta'},{key1:'Alpha'},false,false);&#13;
+&#13;
+	TestCase_IsEqual({key1:'Alpha',key2:'Beta'},{key1:'Beta',key2:'Alpha'},true,false);&#13;
+	TestCase_IsEqual({key1:'Alpha',key2:'Beta'},{key2:'Beta',key1:'Alpha'},true,true);&#13;
+	&#13;
+	&#13;
+	&#13;
+	stepResult.setOutputMessage(strLog);&#13;
+	return bResult;&#13;
+	&#13;
+})(outputs, steps, stepResult, assertEqual);</value>
+        <variable display_value="Test script">989d9e235324220002c6435723dc3484</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>a731b0f91bd8dc90a89720a8ec4bcb3f</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-04-21 07:34:27</sys_created_on>
+        <sys_id>df423cf91bd8dc90a89720a8ec4bcb66</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-04-21 07:34:27</sys_updated_on>
+        <value>3.1</value>
+        <variable display_value="Jasmine version">42f2564b73031300440211d8faf6a777</variable>
+    </sys_variable_value>
+</record_update>
